@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="open-oembed-providers">
+  <description>OU Media Player coding standard - PSR2, almost!</description>
+
+  <rule ref="./vendor/iet-ou/open-media-player-core/phpcs.xml"/>
+</ruleset>
