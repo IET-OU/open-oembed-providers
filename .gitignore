@@ -1,0 +1,22 @@
+
+git-mv.sh
+
+/composer.lock
+/vendor/*
+
+phpunit.xml
+
+Thumbs.db
+.DS_Store
+.project
+_scratch
+
+*.patch
+*.diff
+* copy*
+*OLD*
+*ORIG*
+*BAK
+
+
+#End.
