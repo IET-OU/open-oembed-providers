@@ -11,7 +11,9 @@
  See, http://dl.dropbox.com/u/3203144/oembed-offline/mock-data/dev8d-example-1.json
 */
 
-class Dev8d_serv extends Oembed_provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Dev8d_Provider extends Oembed_provider {
 
   public $regex = 'http://data.dev8d.org/2012/programme/event/*'; // Optional trailing slash.
   public $about = <<<EOT

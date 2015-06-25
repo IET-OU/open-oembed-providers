@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * LAMS/ Learning Activity Management System oEmbed service provider.
  *
@@ -10,7 +11,9 @@
  */
 
 
-class Lams_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Lams_Provider extends Oembed_Provider {
 
   public $regex = 'http://lamscommunity.org/*?seq_id=*'; //array()
   public $about = <<<EOT

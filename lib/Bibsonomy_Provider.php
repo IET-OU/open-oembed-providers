@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Bibsonomy oEmbed service provider -- a stop-gap service?!
  *
@@ -6,8 +7,9 @@
  * @author N.D.Freear, 19 November 2012 - 25 January 2013.
  */
 
+use \IET_OU\Open_Media_Player\Generic_Iframe_Oembed_Provider;
 
-class Bibsonomy_serv extends Generic_Iframe_Oembed_Provider {
+class Bibsonomy_Provider extends Generic_Iframe_Oembed_Provider {
 
   public $regex = 'http://www.bibsonomy.org/*'; // Optional trailing slash.
   public $about = <<<EOT

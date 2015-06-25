@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Google Docs spreadsheet/forms oEmbed service provider.
  *
@@ -7,7 +8,9 @@
  */
 
 
-class Googledoc_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Googledoc_Provider extends Oembed_Provider {
 
   public $regex = 'https://docs.google.com/(spreadsheet|document|present[ation])/*'; #array()
   public $about = <<<EOT

@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Google Groups oEmbed service provider.
  *
@@ -10,7 +11,9 @@
  */
 
 
-class Googlegroups_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Googlegroups_Provider extends Oembed_Provider {
   public $regex = 'https://groups.google.com/forum/#!forum/*';
   public $about = <<<EOT
   Embed Google Groups forums on your web site. [Initially for Cloudworks/OLDS-Mooc. Public access.]

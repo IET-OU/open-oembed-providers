@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Mathtran oEmbed service provider.
  *
@@ -12,7 +13,9 @@
  */
 
 
-class Mathtran_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Mathtran_Provider extends Oembed_Provider {
 
   public $regex = 'http://mathtran.org/formulas/details/*'; // Optional trailing slash?
   public $about = <<<EOT

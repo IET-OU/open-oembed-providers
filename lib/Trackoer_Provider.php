@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Track OER oEmbed service provider.
  *
@@ -11,7 +12,9 @@
 #require_once APPPATH.'libraries/Oembed_Provider.php';
 
 
-class Trackoer_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Trackoer_Provider extends Oembed_Provider {
   public $regex = 'http://(openlearn.open.ac.uk|labspace.open.ac.uk|*oercommons.org)/*';
   public $about = <<<EOT
   Create (and embed) license-tracker code snippets for OpenLearn and OER Commons content. [JISC Track OER service. Public access.]

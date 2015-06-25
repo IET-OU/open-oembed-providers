@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * ScraperWiki oEmbed service provider.
  *
@@ -9,9 +10,10 @@
  * @link https://gist.github.com/4556849
  */
 
+use \IET_OU\Open_Media_Player\External_Oembed_Provider;
 
-class Scraperwiki_serv extends External_Oembed_Provider {
-#class Scraperwiki_serv extends Generic_Iframe_Oembed_Provider {
+class Scraperwiki_Provider extends External_Oembed_Provider {
+#class Scraperwiki_Provider extends Generic_Iframe_Oembed_Provider {
 
   public $regex = 'https://views.scraperwiki.com/run/*';
       #array( , 'https://scraperwiki.com/views/*', )

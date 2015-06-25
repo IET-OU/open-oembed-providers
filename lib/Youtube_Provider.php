@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * YouTube/HTML5 oEmbed service provider.
  *
@@ -6,7 +7,9 @@
  */
 
 
-class Youtube_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Youtube_Provider extends Oembed_Provider {
 
   public $regex = array('http://*youtube.com/watch*', 'http://youtu.be/*');
   public $about = <<<EOT

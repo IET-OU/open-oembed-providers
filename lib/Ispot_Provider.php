@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * iSpot oEmbed service provider.
  *
@@ -10,7 +11,9 @@
  */
 
 
-class Ispot_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Ispot_Provider extends Oembed_Provider {
   public $regex = array(
     'http://ispotnature.org/node/*', 'http://ispotnature.org/taxonomy/*',
     'http://ispotnature.org/habitat/*', 'http://ispotnature.org/map*'

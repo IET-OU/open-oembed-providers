@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Sharepoint oEmbed service provider.
  *
@@ -7,7 +8,9 @@
  */
 
 
-class Sharepoint_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Sharepoint_Provider extends Oembed_Provider {
 
   public $regex = 'https://intranet7.open.ac.uk/collaboration/iet-professional-development/Shared Documents/*'; #array()
   public $about = <<<EOT

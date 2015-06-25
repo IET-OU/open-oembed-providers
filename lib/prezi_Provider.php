@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Prezi oEmbed service provider.
  *
@@ -7,7 +8,9 @@
  */
 
 
-class Prezi_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Prezi_Provider extends Oembed_Provider {
 
   public $regex = 'http://prezi.com/*/*/?'; // Optional trailing slash.
   public $about = <<<EOT

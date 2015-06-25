@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Scratch oEmbed service provider.
  *
@@ -12,7 +13,9 @@
 require_once APPPATH.'libraries/Oembed_Provider.php';
 
 
-class Scratch_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Scratch_Provider extends Oembed_Provider {
 
   public $regex = '';
   public $about = <<<EOT

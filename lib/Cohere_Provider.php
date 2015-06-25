@@ -1,4 +1,5 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  * Cohere oEmbed service provider.
  *
@@ -12,7 +13,9 @@
  */
 
 
-class Cohere_serv extends Oembed_Provider {
+use \IET_OU\Open_Media_Player\Oembed_Provider;
+
+class Cohere_Provider extends Oembed_Provider {
 
   public $regex = 'http://cohere.open.ac.uk/node/*';
   public $about = <<<EOT
