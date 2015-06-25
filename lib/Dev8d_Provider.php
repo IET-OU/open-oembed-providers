@@ -1,8 +1,9 @@
-<?php
+<?php namespace IET_OU\Open_Oembed_Providers;
+
 /**
  Dev8D-oEmbed: re-direct to Chris' output...
  N.D.Freear/ Chris Gutteridge, 14 February 2012.
- 
+
 
  Eg. http://embed.open.ac.uk/dev8d/oembed.php?format=json&callback=FN&url=http%3A//data.dev8d.org/2012/programme/event/CS03
  REDIRECT to,
@@ -13,52 +14,51 @@
 
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 
-class Dev8d_Provider extends Oembed_provider {
+class Dev8d_Provider extends Oembed_provider
+{
 
-  public $regex = 'http://data.dev8d.org/2012/programme/event/*'; // Optional trailing slash.
-  public $about = <<<EOT
+    public $regex = 'http://data.dev8d.org/2012/programme/event/*'; // Optional trailing slash.
+    public $about = <<<EOT
   JISC Dev8D is the major UK event in the year for developers in the education sector to learn from one another and ultimately create better, smarter technology for learning and research. [Initially for Dev8D'12. Public access. Alpha.]
 EOT;
-  public $displayname = 'JISC Dev8D';
-  public $domain = 'data.dev8d.org';
-  public $favicon = 'http://data.dev8d.org/favicon.ico';
-  public $type = 'rich';
+    public $displayname = 'JISC Dev8D';
+    public $domain = 'data.dev8d.org';
+    public $favicon = 'http://data.dev8d.org/favicon.ico';
+    public $type = 'rich';
 
-  public $_about_url = 'http://dev8d.org/';
+    public $_about_url = 'http://dev8d.org/';
 
-  public $_examples = array(
+    public $_examples = array(
     'oEmbed: future proofed embedding made easy' => 'http://data.dev8d.org/2012/programme/event/ET04', // %3F.
-  );
-  public $_access = 'public';
+    );
+    public $_access = 'public';
 
 
-  /**
+    /**
   * Redirect.
   * @return object
   */
-  public function call($url, $matches) {
-    $params = (object) array(
-      'url' => $url,
-      'event' => $matches[1],
-      // Actually, 'callback' 'output' are not required, but this is a start! - ??
-      #'callback' => $this->input->get('callback'),
-      #'format' => _required('format'),
-      'output' => 'oembed',
-    );
+    public function call($url, $matches)
+    {
+        $params = (object) array(
+        'url' => $url,
+        'event' => $matches[1],
+        // Actually, 'callback' 'output' are not required, but this is a start! - ??
+        #'callback' => $this->input->get('callback'),
+        #'format' => _required('format'),
+        'output' => 'oembed',
+        );
 
-    unset($params->url);
+        unset($params->url);
 
-    $redirect_url = "http://data.dev8d.org/2012/programme/?".http_build_query($params);
+        $redirect_url = "http://data.dev8d.org/2012/programme/?".http_build_query($params);
 
-    redirect($redirect_url);
+        redirect($redirect_url);
 
 
-    exit(1);
-  }
-
+        exit(1);
+    }
 }
-
-
 
 /*
 header('Content-Type: application/javascript; charset=utf-8');

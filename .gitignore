@@ -1,4 +1,6 @@
 
+*.sh
+#fix-providers.sh
 git-mv.sh
 
 /composer.lock

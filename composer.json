@@ -39,16 +39,16 @@
   ],
   "scripts": {
     "test": [
-      "composer validate #--no-interaction",
+      "composer validate --no-interaction",
       "parallel-lint lib/*",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
       "phpunit"
     ],
-    "test-x": [
+    "test-cs": [
       "phpcs --standard=PSR2 -n --encoding=utf-8 --extensions=php lib/*"
     ],
     "fix": [
-      "phpcbf --standard=./phpcs.xml -n -l  --encoding=utf-8 --extensions=php lib/X*"
+      "phpcbf --standard=./phpcs.xml -n -l --encoding=utf-8 --extensions=php lib/*"
     ]
   },
   "config": {
