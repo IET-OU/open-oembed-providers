@@ -62,7 +62,7 @@ EOT;
     */
     public function call($url, $matches)
     {
-        $this->CI->load->helper('file');
+        $this->load_helper('file');
 
         $meta = (object) array(
           'url' => $url,

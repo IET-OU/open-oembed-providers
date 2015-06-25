@@ -44,11 +44,10 @@ EOT;
 
     protected function _UNUSED_call($url, $matches)
     {
-
       // Generate the embed URL from the input URL.
         $embed_url = $url;
         $embed_url .= contains($url, '?') ? '&' : '?';
-      #$embed_url .= 'format=embed&_for=' . $this->CI->input->server('HTTP_HOST');
+      #$embed_url .= 'format=embed&_for=' . filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_URL);
 
         $meta = $this->getIframeResponse($url);
 

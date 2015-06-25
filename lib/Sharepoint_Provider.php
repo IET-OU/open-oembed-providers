@@ -7,7 +7,6 @@
  * @author N.D.Freear, 4 July 2012.
  */
 
-
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 
 class Sharepoint_Provider extends Oembed_Provider
@@ -55,7 +54,7 @@ EOT;
 
         //TODO: access - check for either allowed IP address, or SAMS cookie..
         $http_options = array(
-        'auth' => $this->CI->config->item('http_sharepoint_userpwd'), #'[domain\]user:password'
+        'auth' => $this->config_item('http_sharepoint_userpwd'), #'[domain\]user:password'
         'debug' => true,
         );
 
@@ -103,10 +102,10 @@ EOT;
         #'document_size', document_version, tags ..
 
         '_style_url' => base_url() . 'assets/services/sharepoint.css',
-        '_style_embed' => false === $this->CI->input->get('style_link') || $this->CI->input->get('style_link'),
+        '_style_embed' => false === $this->get_param('style_link') || $this->get_param('style_link'),
         );
 
-        $this->CI->load->helper('file');
+        $this->load_helper('file');
         $meta['_document_type'] = get_mime_by_extension($meta['_document_url']);
 
         $meta['_document_ext'] = pathinfo($meta['_document_url'], PATHINFO_EXTENSION);

@@ -42,11 +42,13 @@
       "composer validate --no-interaction",
       "parallel-lint lib/*",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
-      "phpunit"
+      "echo 'grep-ci:'; ! grep -q 'CI->' lib/*.php; OUT=$?; echo $OUT",
+      "#phpunit"
     ],
     "test-cs": [
       "phpcs --standard=PSR2 -n --encoding=utf-8 --extensions=php lib/*"
     ],
+    "grep-ci": "grep -nr 'CI->' lib/*.php",
     "fix": [
       "phpcbf --standard=./phpcs.xml -n -l --encoding=utf-8 --extensions=php lib/*"
     ]

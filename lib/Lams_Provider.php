@@ -10,7 +10,6 @@
  * @copyright Copyright 2011 The Open University.
  */
 
-
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 
 class Lams_Provider extends Oembed_Provider
@@ -39,9 +38,9 @@ EOT;
 
 
     /**
-   * Implementation of call().
-   * @return object
-   */
+    * Implementation of call().
+    * @return object
+    */
     public function call($url, $matches)
     {
         $seq_id = $matches[2];
@@ -125,21 +124,21 @@ EOT;
         $result = $this->_http_request_curl($svg_url);
         if (! $result->success) {
           //Error.
-            log_message('error', __CLASS__.". Error getting LAMS SVG, $svg_url | ".$result->info['http_code']);
+            $this->_log('error', __CLASS__.". Error getting LAMS SVG, $svg_url | ".$result->info['http_code']);
             return false;
         }
         $bytes = @file_put_contents($svg_path, $result->data);
         if (! $bytes) {
-            log_message('error', __CLASS__.". Error caching LAMS SVG, $svg_url");
+            $this->_log('error', __CLASS__.". Error caching LAMS SVG, $svg_url");
         }
         return $bytes;
     }
 
     /** Create cache directories, using 1st and last digits in seq ID (to avoid filling one directory called '1'!)
-  */
+    */
     protected function _mkdir_cache($seq_id)
     {
-        $base = $this->CI->config->item('data_dir');
+        $base = $this->config_item('data_dir');
         $cache_dir = 'lams/'; //.(string)$seq_id[0].substr($seq_id, -1, 1);
         $success = true; //$this->_mkdir_safe($base, $cache_dir);
         if ($success) {
