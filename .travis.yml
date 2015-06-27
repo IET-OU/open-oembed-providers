@@ -1,12 +1,21 @@
 language: php
 php:
   - 5.4
+  - nightly  # Aka '7'
 
-before_script:
+before_install:
   - composer self-update
-  - composer install --prefer-source --dev
+
+install:
+  - composer install --dev
 
 script:
   - composer test
+
+after_success:
+  - echo "Woohoo!"
+
+after_script:
+  - cat /home/travis/build/IET-OU/open-oembed-providers/build/logs/clover.xml
 
 #End.
