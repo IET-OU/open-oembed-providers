@@ -23,8 +23,7 @@ class Providers_Test extends \PHPUnit_Framework_TestCase
         $num_providers = count($providers);
         $num_unique = count($unique);
 
-        echo sprintf(">> Providers: %d; Unique: %d\n", $num_providers, $num_unique);
-        //var_dump("Providers: ". $num_providers, $num_unique, $providers, $unique);
+        echo sprintf(">> oEmbed providers entries: %d / Unique: %d\n", $num_providers, $num_unique);
 
         // Assert
         $this->assertEquals(32, $num_providers);

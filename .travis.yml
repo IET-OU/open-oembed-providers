@@ -13,9 +13,10 @@ script:
   - composer test
 
 after_success:
-  - echo "Woohoo!"
+  #- @echo "Woohoo!"
 
 after_script:
-  - cat /home/travis/build/IET-OU/open-oembed-providers/build/logs/clover.xml
+  # (Result: "No such file or directory")
+  #- cat /home/travis/build/IET-OU/open-oembed-providers/build/logs/clover.xml
 
 #End.
