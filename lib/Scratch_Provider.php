@@ -10,8 +10,6 @@
  *
  * @link https://github.com/IET-OU/ouplayer/commit/bdb2b3b918df619
  */
-require_once APPPATH.'libraries/Oembed_Provider.php';
-
 
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 

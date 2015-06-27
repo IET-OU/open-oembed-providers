@@ -40,15 +40,15 @@
   "scripts": {
     "test": [
       "composer validate --no-interaction",
-      "parallel-lint lib/*",
+      "parallel-lint lib/* views/* tests/*",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
       "echo 'grep-ci:'; ! grep -q 'CI->' lib/*.php; OUT=$?; echo $OUT",
-      "#phpunit"
+      "phpunit"
     ],
     "test-cs": [
       "phpcs --standard=PSR2 -n --encoding=utf-8 --extensions=php lib/*"
     ],
-    "grep-ci": "grep -nr 'CI->' lib/*.php",
+    "grep-ci": "grep -nr 'CI->' lib/*.php views/*.php",
     "fix": [
       "phpcbf --standard=./phpcs.xml -n -l --encoding=utf-8 --extensions=php lib/*"
     ]
