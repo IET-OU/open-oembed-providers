@@ -52,7 +52,7 @@ TODO: scale the image.
 | <a class="xp-popup button" href="http://lessonlams.com/lams/cloud/import.do?sequenceLocation=http://lamscommunity.org/seqs/<?php echo $meta->_seq_id ?>.zip" title="<?php echo t('Open in new window') ?>"
  ><?php echo t('Open in Lesson LAMS<s>, new window') ?></span></a>
 | <a class="xp-popup button details" rel="dct:source"
- data-xp-width-0="1124" data-xp-height="700" data-xp-resizable=1 data-xp-scrollbars=1 
+ data-xp-width-0="1124" data-xp-height="700" data-xp-resizable=1 data-xp-scrollbars=1
  href="http://lamscommunity.org/lamscentral/sequence?seq_id=<?php echo $meta->_seq_id ?>"
  target="_blank" title="<?php echo t('Open in new window') ?>"
  ><?php echo t('Full Info<s>, new window') ?></span></a>
@@ -87,7 +87,7 @@ TODO: scale the image.
       'callback'=>$callback,
       'oembed' =>$oembed,
   );
-  $this->load->view('oembed/render', $view_data);
+  $this->send_oembed_response($view_data);
 
 /* http://creativecommons.org/choose/
 

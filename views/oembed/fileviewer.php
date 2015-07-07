@@ -74,4 +74,4 @@ endif;
       'callback'=>$callback,
       'oembed' =>$oembed,
   );
-  $this->load->view('oembed/render', $view_data);
+  $this->send_oembed_response($view_data);
