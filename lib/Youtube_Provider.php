@@ -9,13 +9,6 @@
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 use \IET_OU\Open_Media_Player\Oembed_Local_Embed_Interface;
 
-
-// TODO: move to separate file!
-class Youtube_Player extends \IET_OU\Open_Media_Player\Base_Player
-{
-}
-
-
 class Youtube_Provider extends Oembed_Provider implements Oembed_Local_Embed_Interface
 {
 
@@ -52,11 +45,11 @@ EOT;
     public function call($url, $matches)
     {
         $video_id = $matches[ 'id' ]; #1
-        $theme = $this->param_get('theme');
+        $theme = $this->get_param('theme');
         if ('oup-light' == $theme) {
-            $embed_url = site_url(sprintf('/embed/-/%s/%s', $his->domain, $video_id));
-        }
-        elseif (preg_match('/^(dark|light)$', $theme)) {
+            $embed_url = site_url(sprintf('/embed/-/%s/%s', $this->domain, $video_id));
+
+        } elseif (preg_match('/^(dark|light)$/', $theme)) {
             $embed_url = sprintf('//www.youtube.com/embed/%s', $video_id);
         } else {
             $this->_error("Unrecognized value for YouTube parameter {theme}", 400);
@@ -94,7 +87,8 @@ EOT;
         /*if ($resp->is_not_found) {
             $this->_error("YouTube video not found, $video_id", 404);
         }
-        else*/if (!$resp->success) {
+        else*/
+        if (!$resp->success) {
             $this->_error("YouTube embed error", $resp->http_code);
         }
         $resp->obj = json_decode($resp->data);

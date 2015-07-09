@@ -7,7 +7,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --dev
+  - composer install --prefer-source
 
 script:
   - composer test
