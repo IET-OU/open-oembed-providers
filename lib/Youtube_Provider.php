@@ -129,8 +129,8 @@ EOT;
             'theme'=> $_theme_name,
             'debug'=> $_debug,
             'standalone' => false,
-            // Auto-generate 'embed' or 'popup'.
-            'mode' => strtolower(get_class($this)),
+            'mode' => 'embed',  // Auto-generate?
+            'context' => $player->shortClass(),
             'req'  => null,
             'google_analytics' => null,  //TODO.
             'popup_url' => null,
