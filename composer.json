@@ -17,6 +17,7 @@
   },
   "require": {
     "php": ">=5.3.3",
+    "khill/php-duration": "dev-master",
     "iet-ou/open-media-player-core": "dev-master"
   },
   "require-dev": {

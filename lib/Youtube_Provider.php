@@ -111,18 +111,26 @@ EOT;
         $_debug = true;
         $_theme_name = 'oup-light';
 
-        $player = new \IET_OU\Open_Oembed_Providers\Youtube_Player([
+        $dur = new \Khill\Duration\Duration();
+        $duration = $video->contentDetails->duration;
+
+        $player = new \IET_OU\Open_Oembed_Providers\Youtube_Player(array(
             'id' => $video_id,
             'title' => $video->snippet->title,
             'mime_type' => 'video/youtube',
             'media_type' => 'video',
-            'media_url' => 'https://youtube.com/watch?v=' . $video_id,
+            'media_url' => 'http://youtu.be/' . $video_id,
             'poster_url' => $thumbnail->url,
             'width'  => $thumbnail->width,
             'height' => $thumbnail->height,
-            'iso_duration' => $video->contentDetails->duration,
+            'duration' => $dur->toSeconds($duration),
+            'duration_fmt' => $dur->formatted($duration),
+            'duration_iso' => $duration,
+            'channel_id' => $video->snippet->channelId,
+            'channel_title' => $video->snippet->channelTitle,
+            'is_stream' => ('none' != $video->snippet->liveBroadcastContent),
             '_theme' => $_theme_name,
-        ]);
+        ));
 
         $view_data = array(
             'meta' => $player,
