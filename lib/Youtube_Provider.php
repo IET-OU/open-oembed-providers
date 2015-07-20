@@ -4,6 +4,7 @@
  * YouTube/HTML5 oEmbed service provider.
  *
  * @copyright Copyright 2012 The Open University.
+ * @link https://www.youtube.com/results?search_query=open+university%2Ccc
  */
 
 use \IET_OU\Open_Media_Player\Oembed_Provider;
@@ -20,7 +21,7 @@ EOT;
     public $displayname = 'YouTube';
     #public $name = 'youtube';
     public $domain = 'youtube.com';
-    public $subdomains = array('m.youtube.com');
+    public $subdomains = array('m.youtube.com', 'youtu.be');
     public $favicon = 'http://youtube.com/favicon.ico';
     public $type = 'video';
 
@@ -37,6 +38,9 @@ EOT;
 
     const API_URL =
     'https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails,id,player,status,contentDetails,snippet&id=%s&key=%s';
+
+    const TT_URL =
+    'https://www.youtube.com/api/timedtext?hl=en_GB&caps=asr&&v=%s&key=yttt1&lang=en&fmt=ttml'; //fmt=srv1,srv3,ttml,srt;
 
     /**
     * Implementation of call().
@@ -112,7 +116,10 @@ EOT;
         $_theme_name = 'oup-light';
 
         $dur = new \Khill\Duration\Duration();
+
         $duration = $video->contentDetails->duration;
+        $has_captions = ('true' == $video->contentDetails->caption);
+        $caption_url = $has_captions ? sprintf(self::TT_URL, $video_id) : null;
 
         $player = new \IET_OU\Open_Oembed_Providers\Youtube_Player(array(
             'id' => $video_id,
@@ -120,6 +127,7 @@ EOT;
             'mime_type' => 'video/youtube',
             'media_type' => 'video',
             'media_url' => 'http://youtu.be/' . $video_id,
+            'caption_url' => $caption_url,
             'poster_url' => $thumbnail->url,
             'width'  => $thumbnail->width,
             'height' => $thumbnail->height,
@@ -132,6 +140,8 @@ EOT;
             '_theme' => $_theme_name,
         ));
 
+        $this->_debug($player);
+
         $view_data = array(
             'meta' => $player,
             'theme'=> $_theme_name,
@@ -142,7 +152,8 @@ EOT;
             'req'  => null,
             'google_analytics' => null,  //TODO.
             'popup_url' => null,
-            '_caption_url' => null,
+            '_caption_url' => $player->caption_url ?
+                (site_url('timedtext/webvtt') .'?url='. urlencode($player->caption_url)) : null,
         );
 
         $this->theme = $this->CI->load->theme($_theme_name);
