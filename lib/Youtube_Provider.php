@@ -100,8 +100,20 @@ EOT;
         return $resp;
     }
 
+    protected function mobile_redirect()
+    {
+        $CI =& get_instance();
+        if ($CI->agent->is_mobile()) {
+            $url = sprintf('https://www.youtube.com/embed/%s', $video_id);
+            header('Location: '. $url, true, 307);
+            exit;
+        }
+    }
+
     public function local_embed($video_id)
     {
+        $this->mobile_redirect();
+
         $resp = $this->api_request($video_id);
 
         $this->_debug($resp->obj);
