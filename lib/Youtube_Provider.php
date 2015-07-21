@@ -87,7 +87,8 @@ EOT;
         $api_url = sprintf(self::API_URL, $video_id, $api_key);
 
         $http = new \IET_OU\Open_Media_Player\Http();
-        $resp = $http->request($api_url);
+        $options = array('ssl_verify' => false);
+        $resp = $http->request($api_url, false, $options);
         /*if ($resp->is_not_found) {
             $this->_error("YouTube video not found, $video_id", 404);
         }
