@@ -2,7 +2,7 @@
 
 # IET-OU / open-oembed-providers
 
-oEmbed [provider][] libraries. _Part of the Open Media Player framework._
+oEmbed [provider][] libraries. _Part of the [Open Media Player][omp] framework._
 
 * http://embed.open.ac.uk/demo/ouldi
 
@@ -25,10 +25,9 @@ License:  `to be confirmed.`
 
 
 [gpl]: http://gnu.org/licenses/gpl-2.0.html "GPL-2.0+"
-[parent]: https://github.com/IET-OU/ouplayer
+[omp]: https://github.com/IET-OU/open-media-player
 [provider]: http://oembed.com/#section2.3
 [Institute of Educational Technology]: http://iet.open.ac.uk/
 [travis-icon]: https://travis-ci.org/IET-OU/open-oembed-providers.svg
 [travis-ci]: https://travis-ci.org/IET-OU/open-oembed-providers
 [Composer]: https://getcomposer.org/
-

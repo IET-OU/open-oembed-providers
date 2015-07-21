@@ -1,7 +1,11 @@
 <?php namespace IET_OU\Open_Oembed_Providers\Test;
 
+/**
+ * Unit / integration tests for oEmbed provider classes.
+ *
+ * @copyright Copyright 2015 The Open University.
+ */
 use \IET_OU\SubClasses\SubClasses;
-
 
 class Providers_Test extends \PHPUnit_Framework_TestCase
 {
@@ -26,9 +30,8 @@ class Providers_Test extends \PHPUnit_Framework_TestCase
         echo sprintf(">> oEmbed providers entries: %d / Unique: %d\n", $num_providers, $num_unique);
 
         // Assert
-        $this->assertEquals(32, $num_providers);
+        $this->assertEquals(33, $num_providers);
         $this->assertEquals(16, $num_unique);
     }
 
 }
-
