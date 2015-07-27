@@ -19,15 +19,16 @@ Install and test using Git and [Composer][],
 
 
 ---
-License:  `to be confirmed.`
+License:  [GPL version 3 onwards][gpl]
 
-© 2011-2015 The Open University. ([Institute of Educational Technology][])
+© 2011-2015 [The Open University][ou] and contributors. ([Institute of Educational Technology][iet])
 
 
-[gpl]: http://gnu.org/licenses/gpl-2.0.html "GPL-2.0+"
+[gpl]: http://gnu.org/licenses/gpl.html "GNU General Public License 3.0 or (at your option) any later version / GPL-3.0+"
 [omp]: https://github.com/IET-OU/open-media-player
 [provider]: http://oembed.com/#section2.3
-[Institute of Educational Technology]: http://iet.open.ac.uk/
 [travis-icon]: https://travis-ci.org/IET-OU/open-oembed-providers.svg
 [travis-ci]: https://travis-ci.org/IET-OU/open-oembed-providers
 [Composer]: https://getcomposer.org/
+[iet]: http://iet.open.ac.uk/
+[ou]: http://www.open.ac.uk/

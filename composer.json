@@ -4,7 +4,7 @@
   "keywords": [ "ouplayer", "embed", "audio", "video", "oEmbed", "accessibility", "OpenUniversity", "IET-OU" ],
   "homepage": "http://embed.open.ac.uk/demo/ouldi",
   "type": "library",
-  "license": "proprietary",
+  "license": "GPL-3.0+",
   "minimum-stability": "dev",
   "time": "2011-08-09",
   "authors": [
@@ -12,7 +12,7 @@
   ],
   "support": {
     "email": "iet-webmaster@open.ac.uk",
-    "issues": "https://github.com/IET-OU/ouplayer/issues",
+    "issues": "https://github.com/IET-OU/open-media-player/issues",
     "source": "https://github.com/IET-OU/open-oembed-providers"
   },
   "require": {
