@@ -128,7 +128,7 @@ EOT;
     protected function mobile_redirect()
     {
         $CI =& get_instance();
-        if ($CI->agent->is_mobile()) {
+        if ($CI->agent->is_mobile() && $this->config_item('youtube_mobile_redirect')) {
             $url = sprintf('https://www.youtube.com/embed/%s', $video_id);
             header('Location: '. $url, true, 307);
             exit;
