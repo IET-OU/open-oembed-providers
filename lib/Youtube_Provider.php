@@ -74,7 +74,7 @@ EOT;
     public function call($url, $matches)
     {
         $video_id = $matches[ 'id' ]; #1
-        $theme = $this->get_param('theme');
+        $theme = $this->get_param('theme', $this->config_item('youtube_default_theme', 'oup-light'));
         if ('oup-light' == $theme) {
             $embed_url = site_url(sprintf('/embed/-/%s/%s', $this->domain, $video_id));
 
