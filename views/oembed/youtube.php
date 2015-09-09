@@ -15,7 +15,7 @@
   ?>
 <div class='youtube embed-rsp'><iframe title='<?php echo t('YouTube video player') ?>' width='<?php echo $width ?>' height='<?php echo $height ?>'
  allowfullscreen frameborder='0'
- src='<?php echo $meta->embed_url ?>?theme=<?php echo $meta->theme ?>&amp;debug=2&amp;origin=<?php echo $this->input->server('HTTP_HOST'); ?>'
+ src='<?php echo $meta->embed_url ?>'
  ><?php echo t('Your browser does not support frames.') ?>
 </iframe><div style="font-size:small"><img alt='' src='//www.youtube.com/favicon.ico' style='padding-top:3px'/>
  <?php /*<a href='http://youtube.com/html5' title="<?php echo t("Join YouTube's HTML5 trial") ?>"><?php echo t('Opt-in to HTML5') ?></a>*/ ?>

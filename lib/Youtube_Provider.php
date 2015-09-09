@@ -76,7 +76,10 @@ EOT;
         $video_id = $matches[ 'id' ]; #1
         $theme = $this->get_param('theme', $this->config_item('youtube_default_theme', 'oup-light'));
         if ('oup-light' == $theme) {
-            $embed_url = site_url(sprintf('/embed/-/%s/%s', $this->domain, $video_id));
+            $this->CI->_request_init();
+            $embed_url = site_url(sprintf('/embed/-/%s/%s', $this->domain, $video_id))
+                . $this->CI->_options_build_query(array(
+                    'theme' => 'oup-light', 'origin' => $this->CI->input->server('HTTP_HOST') ));
 
         } elseif (preg_match('/^(dark|light)$/', $theme)) {
             $embed_url = sprintf('//www.youtube.com/embed/%s', $video_id);
