@@ -5,7 +5,6 @@
  *
  * @copyright Copyright 2015 The Open University.
  */
-use \IET_OU\SubClasses\SubClasses;
 
 class Providers_Test extends \PHPUnit_Framework_TestCase
 {
@@ -18,10 +17,10 @@ class Providers_Test extends \PHPUnit_Framework_TestCase
     public function testOembedProviders()
     {
         // Arrange
-        $sub = new SubClasses();
+        $plugins = new \IET_OU\Open_Media_Player\Plugin_Finder();
 
         // Act
-        $providers = $sub->get_oembed_providers();
+        $providers = $plugins->get_oembed_providers();
         $unique = array_unique($providers);
 
         $num_providers = count($providers);
