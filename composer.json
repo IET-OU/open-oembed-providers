@@ -1,11 +1,11 @@
 {
   "name": "iet-ou/open-oembed-providers",
-  "description": "oEmbed provider libraries, for Open Media Player. ©2015 The Open University.",
+  "description": "oEmbed provider libraries, for Open Media Player. © The Open University.",
   "keywords": [ "ouplayer", "embed", "audio", "video", "oEmbed", "accessibility", "OpenUniversity", "IET-OU" ],
   "homepage": "http://embed.open.ac.uk/demo/ouldi",
   "type": "library",
   "license": "GPL-3.0+",
-  "minimum-stability": "dev",
+  "minimum-stability": "alpha",
   "time": "2011-08-09",
   "authors": [
     { "name": "Nick Freear (@nfreear)", "role": "developer" }
@@ -17,12 +17,12 @@
   },
   "require": {
     "php": ">=5.3.3",
-    "khill/php-duration": "dev-master",
-    "iet-ou/open-media-player-core": "dev-master"
+    "khill/php-duration": "^1.0",
+    "iet-ou/open-media-player-core": "^2.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "~2.1.0",
-    "jakub-onderka/php-parallel-lint": "~0.8",
+    "squizlabs/php_codesniffer": "^2.5",
+    "jakub-onderka/php-parallel-lint": "^0.9.2",
     "phpunit/phpunit": "~4.0"
   },
   "autoload": {
