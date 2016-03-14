@@ -33,13 +33,13 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "http://iet-embed-acct.open.ac.uk/satis/"
+      "url": "https://embed.open.ac.uk/iet-satis/"
     }
   ],
   "scripts": {
     "test": [
       "composer validate --no-interaction",
-      "parallel-lint lib/* views/* tests/*",
+      "./vendor/bin/parallel-lint --exclude vendor .",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
       "echo 'grep-ci:'; ! grep -q 'CI->' lib/*.php; OUT=$?; echo $OUT",
       "phpunit"
