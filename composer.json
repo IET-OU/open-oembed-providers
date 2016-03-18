@@ -45,7 +45,7 @@
       "phpunit"
     ],
     "test-cs": [
-      "phpcs --standard=PSR2 -n --encoding=utf-8 --extensions=php lib/*"
+      "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*"
     ],
     "grep-ci": "grep -nr 'CI->' lib/*.php views/*.php",
     "fix": [

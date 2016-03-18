@@ -12,7 +12,6 @@
  * Also, http://olnet.org/node/142 | http://olnet.org/ci/demo | http://olnet.org/oembed
  */
 
-
 use \IET_OU\Open_Media_Player\Oembed_Provider;
 
 class Cohere_Provider extends Oembed_Provider
@@ -49,14 +48,13 @@ EOT;
   */
     public function call($url, $matches)
     {
-
         $request = (object) array(
-        'url' => $url,
-        'html5' => true,
+            'url' => $url,
+            'html5' => true,
         );
         $node_id = $matches[1];
 
-    #Width: I've trimmed, but still too big!
+        #Width: I've trimmed, but still too big!
         $embed_width = 650;
         $embed_height= 340;
         $iframe_width= 1002; #1002,1015;
@@ -67,9 +65,9 @@ EOT;
             $iframe_attr =' seamless="seamless" '; #sandbox?
         }
 
-  # 2. Validate URL and get node ID - Oembed controller.
+        # 2. Validate URL and get node ID - Oembed controller.
 
-  # 3. Form feed URL, Get RSS feed - cURL... max=20
+        # 3. Form feed URL, Get RSS feed - cURL... max=20
         $feed_url = "http://cohere.open.ac.uk/api/service.php?format=rss&method=getnodesbynode&nodeid=$node_id&start=0&max=5&orderby=date&sort=DESC&direction=right"; #&filtergroup=&filterlist=&netnodeid=&netq=&netscope=";
 
         $result = $this->_http_request_curl($feed_url);
@@ -77,15 +75,14 @@ EOT;
             $this->_error("Cohere oEmbed provider HTTP problem, $feed_url", $result->http_code);
         }
 
-
-  # 4. Extract meta-data from Feed.
+        # 4. Extract meta-data from Feed.
         $xmlo = @simplexml_load_string($result->data);
         if (! $xmlo) {
             $this->_error("Cohere oEmbed provider XML problem, $feed_url");
         }
 
         $xmlo->registerXPathNamespace('dc', 'http://purl.org/dc/elements/1.1/');
-    #$link  = $xmlo->xpath('//item/link');
+        #$link  = $xmlo->xpath('//item/link');
         $title = $xmlo->xpath('//item/title');
         $desc  = $xmlo->xpath('//item/description');
         $author= $xmlo->xpath('//item/dc:creator');
@@ -97,23 +94,23 @@ EOT;
         $author= (string) $author[$idx];
         $date  = strtotime((string) $date[$idx]);
 
-  # 5. Create <iframe> markup + a heading-link - see the view.
+        # 5. Create <iframe> markup + a heading-link - see the view.
 
         $meta = array(
-        'type'  => $this->type,
-        'title' => $title,
-        'author_name'  => $author,
-      #'author_url'  => 'http://cohere.open.ac.uk/user.php?userid=137108251180600208001228233364', #@todo: Anna.
-        'provider_mid' => $node_id,
-        'provider_name'=> $this->displayname,
-        'provider_url' => $this->_about_url,
-        'html'  => null,
-        'width' => $embed_width,
-        '_iframe_width' => $iframe_width,
-        'height'=> $embed_height,
-        'description'=>$desc,
-        'lang'  => 'en', #@todo ?
+          'type'  => $this->type,
+          'title' => $title,
+          'author_name'  => $author,
+          #'author_url'  => 'http://cohere.open.ac.uk/user.php?userid=137108251180600208001228233364', #todo: Anna.
+          'provider_mid' => $node_id,
+          'provider_name'=> $this->displayname,
+          'provider_url' => $this->_about_url,
+          'html'  => null,
+          'width' => $embed_width,
+          '_iframe_width' => $iframe_width,
+          'height'=> $embed_height,
+          'description'=>$desc,
+          'lang'  => 'en', #@todo ?
         );
-    return (object) $meta;
+        return (object) $meta;
     }
 }
