@@ -2,7 +2,7 @@
   "name": "iet-ou/open-oembed-providers",
   "description": "oEmbed provider libraries, for Open Media Player. © The Open University.",
   "keywords": [ "ouplayer", "embed", "audio", "video", "oEmbed", "accessibility", "OpenUniversity", "IET-OU" ],
-  "homepage": "http://embed.open.ac.uk/demo/ouldi",
+  "homepage": "https://embed.open.ac.uk/demo/ouldi",
   "type": "library",
   "license": "GPL-3.0+",
   "minimum-stability": "alpha",
@@ -38,7 +38,6 @@
   ],
   "scripts": {
     "test": [
-      "composer validate --no-interaction",
       "parallel-lint --exclude vendor .",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
       "echo 'grep-ci:'; ! grep -q 'CI->' lib/*.php; OUT=$?; echo $OUT",
