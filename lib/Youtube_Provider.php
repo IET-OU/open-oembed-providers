@@ -78,11 +78,10 @@ EOT;
         if ('oup-light' == $theme) {
             $this->CI->_request_init();
             $embed_url = site_url(sprintf('/embed/-/%s/%s', $this->domain, $video_id))
-                . $this->CI->_options_build_query(array(
-                    'theme' => 'oup-light', 'origin' => $this->CI->input->server('HTTP_HOST') ));
-
+                . $this->CI->_options_build_query([
+                    'theme' => 'oup-light', 'origin' => $this->CI->input->server('HTTP_HOST') ]);
         } elseif (preg_match('/^(dark|light)$/', $theme)) {
-            $embed_url = sprintf('//www.youtube.com/embed/%s', $video_id);
+            $embed_url = sprintf('https://www.youtube.com/embed/%s', $video_id);
         } else {
             $this->_error("Unrecognized value for YouTube parameter {theme}", 400);
         }

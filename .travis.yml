@@ -1,13 +1,11 @@
 language: php
 php:
-  #- 5.4
-  #-5.5
   - 5.6
   - 7.0
   #- nightly  # Aka '7'
 
-before_install:
-  - composer self-update
+git:
+  depth: 8
 
 install:
   - composer install --prefer-source
