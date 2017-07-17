@@ -26,9 +26,9 @@ EOT;
 
     public $_regex_real = null;
     public $_examples = array(
-    'Dig. Schol. by M.Weller' => 'http://prezi.com/izeqbfy2z5w-/digital-scholarship',
-    'http://prezi.com/zoidjousoeat/technology-for-the-classroom',
-    '_OEM'=>'/oembed?url=http%3A//prezi.com/izeqbfy2z5w-/digital-scholarship',
+        'Dig. Schol. by M.Weller' => 'http://prezi.com/izeqbfy2z5w-/digital-scholarship',
+        'http://prezi.com/zoidjousoeat/technology-for-the-classroom',
+        '_OEM' => '/oembed?url=http%3A//prezi.com/izeqbfy2z5w-/digital-scholarship',
     );
     public $_access = 'public';
 
@@ -50,27 +50,27 @@ EOT;
 
 
     /**
-  * Call the Embed.ly service (2011-03-23).
-  * @return object
-  */
+    * Call the Embed.ly service (2011-03-23).
+    * @return object
+    */
     public function call($url, $matches)
     {
 
         $meta = array(
-        'url'=>$url,
-        'provider_name'=>'Prezi',
-        'provider_mid' =>$matches[1],
-        'title' => ucfirst(str_replace('-', ' ', $matches[2])),
-        'author'=>null,
-        'timestamp'=>null,
-        '_itunes_app_url'=> self::ITUNES_APP_URL,
-        '_ipad_open_url' => $this->_ipad_open_url($matches[1]),
+            'url'=>$url,
+            'provider_name'=>'Prezi',
+            'provider_mid' =>$matches[1],
+            'title' => ucfirst(str_replace('-', ' ', $matches[2])),
+            'author'=> null,
+            'timestamp' => null,
+            '_itunes_app_url'=> self::ITUNES_APP_URL,
+            '_ipad_open_url' => $this->_ipad_open_url($matches[1]),
         );
 
         $json_url = $this->_embedly_oembed_url($url);
         $result = $this->_http_request_json($json_url, $spoof = true);
         if (! $result->success) {
-          //403: Forbidden - Embedly has blocked your client ip. Sign up for an API key at http://embed.ly.
+            //403: Forbidden - Embedly has blocked your client ip. Sign up for an API key at http://embed.ly.
             die("Error, Prezi_serv woops, $json_url");
             return false; //Error.
         }
@@ -79,15 +79,15 @@ EOT;
             return false; //Error.
         }
 
-    // Older Prezis only?
+        // Older Prezis only?
         if (preg_match('/^(.*) presented by (.*)$/', $result->json->description, $m_desc)) {
             $meta['timestamp'] = strtotime($m_desc[1]);
-          #$meta['author'] = $m_desc[2];
+            #$meta['author'] = $m_desc[2];
         } else {
-          // Newer ones, eg. M.Weller's?
+            // Newer ones, eg. M.Weller's?
             $meta['description'] = $result->json->description;
         }
-   // No longer works (26 Sep 2011) :(.
+        // No longer works (26 Sep 2011) :(.
         if (preg_match('/^(.*) by (.*)? on Prezi/', $result->json->title, $m_title)) {
             $meta['title'] = $m_title[1];
             $meta['author']= $m_title[2];
@@ -100,60 +100,58 @@ EOT;
         $meta['thumbnail_width']= $result->json->thumbnail_width;
         $meta['thumbnail_height']=$result->json->thumbnail_height;
 
-      //$cache_id = $this->embed_cache_model->insert_embed($meta);
+        //$cache_id = $this->embed_cache_model->insert_embed($meta);
 
         return (object) $meta;
     }
 
     /** Pre-Embed.ly screen scraper - broken by new HTML5!
-  */
+    */
     protected function _call_screen_scrape($url, $matches)
     {
-    //protected function _meta_prezi($url, $matches=null) {
-
         $meta = array(
-        'url'=>$url,
-        'provider_name'=>'prezi',
-        'provider_mid' =>$matches[1],
-        'title' => ucfirst(str_replace('-', ' ', $matches[2])),
-        'timestamp'=>null,
+            'url'=>$url,
+            'provider_name'=>'prezi',
+            'provider_mid' =>$matches[1],
+            'title' => ucfirst(str_replace('-', ' ', $matches[2])),
+            'timestamp'=>null,
         );
 
-    $result = $this->_http_request_curl($url, $spoof = true);
-    if (! $result->success) {
-        die("Error, Prezi_serv woops");
-        return false; //Error.
-    }
-
-    preg_match('#(<head.*</head>)#ms', $result->data, $matches);
-    $head = $this->_safe_xml($matches[1]);
-    $xh = new SimpleXmlElement($head);
-
-    foreach ($xh->children() as $name => $value) {
-        $attr = $value->attributes();
-        if ('meta'==$name && isset($attr['name'])) {
-            if ('description'==$attr['name']) {
-                $desc = (string) $attr['content'];
-                if (preg_match('#(.*)presented by(.*)#', $desc, $m_desc)) {
-                  //$meta['author']= trim($m_desc[2]);
-                    $meta['timestamp'] = strtotime($m_desc[1]);
-                } else {
-                    $meta['description'] = $desc;
-                }
-            } elseif ('title'==$attr['name']) {
-                $meta['title'] = (string) $attr['content'];
-            }
-        } elseif ('link'==$name && 'image_src'==$attr['rel']) {
-            $meta['thumbnail_url'] = (string) $attr['href'];
-        } elseif ('title'==$name
-        && preg_match('#by(.*)on Prezi#', (string) $value, $m_title)) {
-            $meta['author'] = trim($m_title[1]);
+        $result = $this->_http_request_curl($url, $spoof = true);
+        if (! $result->success) {
+            die("Error, Prezi_serv woops");
+            return false; //Error.
         }
-    }
-    //$desc = $xh->xpath("//meta[@name='description']/@content");
 
-    //$cache_id = $this->embed_cache_model->insert_embed($meta);
-    
-    return (object) $meta;
+        preg_match('#(<head.*</head>)#ms', $result->data, $matches);
+        $head = $this->_safe_xml($matches[1]);
+        $xh = new SimpleXmlElement($head);
+
+        foreach ($xh->children() as $name => $value) {
+            $attr = $value->attributes();
+            if ('meta' == $name && isset($attr['name'])) {
+                if ('description' == $attr['name']) {
+                    $desc = (string) $attr['content'];
+                    if (preg_match('#(.*)presented by(.*)#', $desc, $m_desc)) {
+                      //$meta['author']= trim($m_desc[2]);
+                        $meta['timestamp'] = strtotime($m_desc[1]);
+                    } else {
+                        $meta['description'] = $desc;
+                    }
+                } elseif ('title' == $attr['name']) {
+                    $meta['title'] = (string) $attr['content'];
+                }
+            } elseif ('link' == $name && 'image_src' == $attr['rel']) {
+                $meta['thumbnail_url'] = (string) $attr['href'];
+            } elseif ('title' == $name
+                && preg_match('#by(.*)on Prezi#', (string) $value, $m_title)) {
+                $meta['author'] = trim($m_title[1]);
+            }
+        }
+        //$desc = $xh->xpath("//meta[@name='description']/@content");
+
+        //$cache_id = $this->embed_cache_model->insert_embed($meta);
+
+        return (object) $meta;
     }
 }
