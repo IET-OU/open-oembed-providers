@@ -16,14 +16,14 @@
     "source": "https://github.com/IET-OU/open-oembed-providers"
   },
   "require": {
-    "php": ">=5.3.3",
+    "php": ">=5.5.9",
     "khill/php-duration": "^1.0",
     "iet-ou/open-media-player-core": "^2.0"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^2.5",
+    "squizlabs/php_codesniffer": "^2.9",
     "jakub-onderka/php-parallel-lint": "^0.9.2",
-    "phpunit/phpunit": "~4.0"
+    "phpunit/phpunit": "~6.0"
   },
   "autoload": {
     "psr-4": {
@@ -39,7 +39,7 @@
   "scripts": {
     "test": [
       "composer validate --no-interaction",
-      "./vendor/bin/parallel-lint --exclude vendor .",
+      "parallel-lint --exclude vendor .",
       "phpcs --standard=./phpcs.xml -n --encoding=utf-8 --extensions=php lib/*",
       "echo 'grep-ci:'; ! grep -q 'CI->' lib/*.php; OUT=$?; echo $OUT",
       "phpunit"
