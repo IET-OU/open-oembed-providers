@@ -50,10 +50,10 @@ class URN_Speech_Provider extends IframeProvider
 
         // Generate the embed URL from the input URL.
         $embed_url = strtr(self::EMBED_URL, [
-            '{version}' => self::VERSION,
-            '{text}' => $text,
-            '{lang}' => $lang ? $lang : '',
-            '{mode}' => $mode ? $mode : 'speak',
+            '{version}' => self::getVersion(),
+            '{text}' => urlencode($text),
+            '{lang}' => urlencode($lang ? $lang : ''),
+            '{mode}' => urlencode($mode ? $mode : 'speak'),
         ]);
 
         $meta = $this->getIframeResponse($url);
@@ -63,5 +63,11 @@ class URN_Speech_Provider extends IframeProvider
         $meta->height = 80;
 
         return $meta;
+    }
+
+    protected static function getVersion()
+    {
+        $version = config_item('speech_provider_version');
+        return $version ? $version : self::VERSION;
     }
 }

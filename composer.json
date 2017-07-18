@@ -55,6 +55,9 @@
     "preferred-install": "dist"
   },
   "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    },
     "//": [
       "https://gist.github.com/nfreear/57262e040d49b2f212ec"
     ]
